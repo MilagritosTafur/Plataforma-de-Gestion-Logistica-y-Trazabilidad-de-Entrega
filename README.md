@@ -1,39 +1,45 @@
-# Plataforma-de-Gestion-Logistica-y-Tranzabilidad-de-Entrega
+# Plataforma de Gestión Logística y Trazabilidad de Entrega
 
-*Descripcion* 
-Plataforma integral de gestion logistica diseñada para empresas de reparto que permite registrar, monitorear y rastrear servicios de entrega de forma centralizada. Integra clientes, ordenes, vehiculos, rutas y eventos de tranzabilidad en una solucion unificada.
+## 📝 Descripción
+Plataforma integral de gestión logística diseñada para empresas de reparto que permite registrar, monitorear y rastrear servicios de entrega de forma centralizada. Integra clientes, órdenes, vehículos, rutas y eventos de trazabilidad en una solución unificada.
 
-*Problematica*
-Actualmente, las empresas de reparto registarn servicios y entregas en aplicaciones separadas, lo cual genera: 
--Duplicidad de datos
--Falta de visibilidad integrada
--Ineficiendia operacional
--Dificultad en el seguimiento de la entrega.
+---
 
+## ⚠️ Problemática
+Actualmente, las empresas de reparto registran servicios y entregas en aplicaciones separadas, lo cual genera:
+- Duplicidad de datos.
+- Falta de visibilidad integrada.
+- Ineficiencia operacional.
+- Dificultad en el seguimiento de la entrega.
 
-*Caracteristicas principales*
-Modulos Funcinales
--Clientes y Direcciones: Registro y gestion de informacion de clientes.
--Administracion: Configuracion y seguridad del sistema.
--Operador Logistico: Registro de servicios, rutas y eventos.
--Dispensador: Visualizacionn y actualizacion de eventos de entrega.
--Cliente: Consulta publicamente el estado de entrega (codigo unico publico)
+---
 
+## 🚀 Características Principales
 
-*Reglas del negocio*
--Un evento sin estado activo no puede registrar asignaciones incompatibles.
--Una ruta solo puede modificarse si esta en estado "abierto".
--Solo el dispensador asignado puede registrar ciertos eventos de rutas.
--El codigo de seguimiento debe ser unico y generado automaticamente.
--El cliente no puede acceder a datos operativos de otros clientes. 
+### Módulos Funcionales
+- **Clientes y Direcciones:** Registro y gestión de información de clientes.
+- **Administración:** Configuración y seguridad del sistema.
+- **Operador Logístico:** Registro de servicios, rutas y eventos.
+- **Dispensador:** Visualización y actualización de eventos de entrega.
+- **Cliente:** Consulta públicamente el estado de entrega (código único público).
 
+---
 
-*Modulos de datos*
--Cleintes y Direcciones
--Direcciones Destino 
--Servicios y Rutas
--Vehiculos Repartidores
--Eventos y Asignaciones
--Seguimientos
--Estados, Incidencias, Diagnostico y Derivos. 
+## 💼 Reglas de Negocio
+- Un evento sin estado activo no puede registrar asignaciones incompatibles.
+- Una ruta solo puede modificarse si está en estado "abierto".
+- Solo el dispensador asignado puede registrar ciertos eventos de rutas.
+- El código de seguimiento debe ser único y generado automáticamente.
+- El cliente no puede acceder a datos operativos de otros clientes.
+
+---
+
+## 📊 Módulos de Datos
+- Clientes y Direcciones
+- Direcciones Destino
+- Servicios y Rutas
+- Vehículos Repartidores
+- Eventos y Asignaciones
+- Seguimientos
+- Estados, Incidencias, Diagnóstico y Derivos.
 
