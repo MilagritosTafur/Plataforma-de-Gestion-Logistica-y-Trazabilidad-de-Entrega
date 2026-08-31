@@ -1,23 +1,35 @@
+.tracking-wide {
+    letter-spacing: 0.12em;
+}
+
+.tracking-wider {
+    letter-spacing: 0.2em;
+}
+
 .hero-section {
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-            color: white;
-            padding: 100px 0;
-        }
-        .tracking-box {
-            margin-top: -50px;
-            z-index: 10;
-            position: relative;
-        }
-        .service-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: none;
-            border-left: 4px solid transparent;
-        }
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-            border-left: 4px solid #f5a623; /* Tono dorado/naranja formal */
-        }
-        .icon-gold {
-            color: #f5a623;
-        }
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: white;
+    padding: 100px 0px;
+}
+
+.tracking-box {
+    margin-top: -50px;
+    z-index: 10;
+    position: relative;
+}
+
+.service-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    border-left: 4px solid transparent;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    border-left: 4px solid #f5a623;
+}
+
+.icon-gold {
+    color: #f5a623;
+}
