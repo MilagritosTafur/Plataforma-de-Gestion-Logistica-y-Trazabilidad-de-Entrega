@@ -34,3 +34,10 @@
 .icon-gold {
     color: #f5a623;
 }
+
+#nav {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000; /*evita q otros elementos aparezcan encima*/
+}
