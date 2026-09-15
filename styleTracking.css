@@ -1,0 +1,53 @@
+
+.tracking-timeline {
+    position: relative;
+    padding-left: 3rem;
+    margin-top: 2rem;
+}
+
+.tracking-timeline::before {
+    content: '';
+    position: absolute;
+    left: 0.95rem; 
+    top: 0;
+    height: 100%;
+    width: 3px;
+    background-color: #e9ecef;
+}
+
+.timeline-step {
+    position: relative;
+    margin-bottom: 2.5rem;
+}
+
+.timeline-icon {
+    position: absolute;
+    left: -3rem;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    z-index: 1;
+}
+
+.timeline-icon.completed {
+    background-color: #dc3545;
+    color: white;
+    border: 3px solid #dc3545;
+}
+
+.timeline-icon.active {
+    background-color: #ffc107;
+    color: #212529;
+    border: 3px solid #ffc107;
+    box-shadow: 0 0 0 5px rgba(255, 193, 7, 0.3);
+}
+
+.timeline-icon.pending {
+    background-color: #f8f9fa;
+    color: #adb5bd;
+    border: 3px solid #dee2e6;
+}

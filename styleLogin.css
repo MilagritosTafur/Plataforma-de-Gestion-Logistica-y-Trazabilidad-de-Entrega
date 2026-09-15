@@ -1,0 +1,22 @@
+
+.login-bg {
+    background:
+    linear-gradient(rgba(0, 0, 0, 0.6), rgba(150, 150, 150, 0.417)),
+    url("img/bg1.jpg");
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+    background-color: #dc3545 !important;
+    color: white !important;
+}
+
+.nav-pills .nav-link {
+    color: #243e58;
+    font-weight: 600;
+}
