@@ -2,7 +2,7 @@
 .login-bg {
     background:
     linear-gradient(rgba(0, 0, 0, 0.6), rgba(150, 150, 150, 0.417)),
-    url("img/bg1.jpg");
+    url("../../static/img/bg1.jpg");
     background-size: cover; 
     background-position: center; 
     background-repeat: no-repeat; 
