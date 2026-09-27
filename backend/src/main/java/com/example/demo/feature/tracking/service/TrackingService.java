@@ -1,6 +1,7 @@
 package com.example.demo.feature.tracking.service;
 
+import java.util.Map;
 
 public interface TrackingService {
-    Object obtenerHistorialPorCodigo(String codigoSeguimiento);
+    Map<String, Object> obtenerHistorialPorCodigo(String codigoSeguimiento);
 }
