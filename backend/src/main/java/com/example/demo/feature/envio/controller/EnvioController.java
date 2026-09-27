@@ -1,39 +1,48 @@
 package com.example.demo.feature.envio.controller;
 
-import com.example.demo.feature.envio.service.EnvioService;
+import com.example.demo.feature.logistica.dto.CrearEnvioRequest;
+import com.example.demo.feature.logistica.dto.RegistrarEventoRequest;
+import com.example.demo.feature.logistica.service.ServicioLogistico;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.*;
 
 @RestController
-@RequestMapping("/envios")
+@RequestMapping("/api/envios")
 @RequiredArgsConstructor
 public class EnvioController {
 
-    private final EnvioService envioService;
+    private final ServicioLogistico servicioLogistico;
 
     @PostMapping
-    public ResponseEntity<Object> crearEnvio(@RequestBody Object request) {
-        Object nuevoEnvio = envioService.crearEnvio(request);
-        return ResponseEntity.status(HttpStatus.CREATED).body(nuevoEnvio);
+    @PreAuthorize("hasRole('OPERADOR')")
+    public ResponseEntity<Map<String, Object>> crearEnvio(@Valid @RequestBody CrearEnvioRequest request,
+                                                           @AuthenticationPrincipal UserDetails principal) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(servicioLogistico.crearEnvio(request, principal.getUsername()));
     }
 
     @GetMapping
-    public ResponseEntity<List<Object>> listarEnvios() {
-        return ResponseEntity.ok(envioService.listarEnvios());
+    @PreAuthorize("hasAnyRole('ADMINISTRADOR','OPERADOR')")
+    public ResponseEntity<List<Map<String, Object>>> listarEnvios() {
+        return ResponseEntity.ok(servicioLogistico.listarEnvios());
     }
 
-    @GetMapping("/{codigoSeguimiento}")
-    public ResponseEntity<Object> consultarPorTracking(@PathVariable String codigoSeguimiento) {
-        return ResponseEntity.ok(envioService.buscarPorCodigo(codigoSeguimiento));
+    @GetMapping("/mis-envios")
+    @PreAuthorize("hasRole('USUARIO')")
+    public ResponseEntity<List<Map<String, Object>>> misEnvios(@AuthenticationPrincipal UserDetails principal) {
+        return ResponseEntity.ok(servicioLogistico.misEnvios(principal.getUsername()));
     }
 
-    @PatchMapping("/{id}/estado")
-    public ResponseEntity<Object> actualizarEstado(@PathVariable Long id, @RequestParam String nuevoEstado) {
-        Object envioActualizado = envioService.actualizarEstado(id, nuevoEstado);
-        return ResponseEntity.ok(envioActualizado);
+    @PostMapping("/{id}/eventos")
+    @PreAuthorize("hasRole('REPARTIDOR')")
+    public ResponseEntity<Map<String, Object>> registrarEvento(@PathVariable Long id, @Valid @RequestBody RegistrarEventoRequest request,
+                                                                @AuthenticationPrincipal UserDetails principal) {
+        return ResponseEntity.ok(servicioLogistico.registrarEvento(id, request, principal.getUsername()));
     }
 }
