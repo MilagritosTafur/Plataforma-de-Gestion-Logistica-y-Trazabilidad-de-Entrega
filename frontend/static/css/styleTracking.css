@@ -1,0 +1,38 @@
+.tracking-timeline {
+  position: relative;
+  padding-left: 3.45rem;
+}
+.tracking-timeline::before {
+  content: "";
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  bottom: 1rem;
+  width: 2px;
+  background: linear-gradient(#55c7ca, #ec6b73);
+}
+.timeline-step {
+  position: relative;
+  padding: 0 0 1.9rem 0.15rem;
+}
+.timeline-step:last-child {
+  padding-bottom: 0;
+}
+.timeline-icon {
+  position: absolute;
+  left: -3.45rem;
+  top: -0.1rem;
+  width: 2.1rem;
+  height: 2.1rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: #fff;
+  background: linear-gradient(145deg, #60cbd0, #338d9a);
+  box-shadow:
+    0 0 0 4px #f6f9fc,
+    0 0.45rem 1rem rgba(52, 128, 139, 0.18);
+}
+.timeline-step:last-child .timeline-icon {
+  background: linear-gradient(145deg, #ef8588, #d65460);
+}

@@ -10,6 +10,8 @@ import org.springframework.web.server.ResponseStatusException;
 import com.example.demo.domain.model.RolNombre;
 import com.example.demo.domain.model.Role;
 import com.example.demo.domain.model.Usuario;
+import com.example.demo.domain.model.Cliente;
+import com.example.demo.domain.repository.ClienteRepository;
 import com.example.demo.domain.repository.RoleRepository;
 import com.example.demo.domain.repository.UsuarioRepository;
 import com.example.demo.feature.auth.dto.LoginRequest;
@@ -21,6 +23,7 @@ import com.example.demo.feature.usuario.mapper.UsuarioMapper;
 import com.example.demo.security.JwtService;
 
 import lombok.RequiredArgsConstructor;
+import java.util.Locale;
 
 @Service
 @RequiredArgsConstructor
@@ -31,10 +34,11 @@ public class AuthServiceImpl implements AuthService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final UsuarioMapper usuarioMapper;
+    private final ClienteRepository clienteRepository;
 
     @Override
     public LoginResponse login(LoginRequest request) {
-        Usuario usuario = usuarioRepository.findByEmail(request.email())
+        Usuario usuario = usuarioRepository.findByEmailIgnoreCase(normalizarEmail(request.email()))
                 .orElseThrow(() -> new BadCredentialsException("Credenciales invalidas"));
 
         if (!usuario.isActivo()) {
@@ -53,7 +57,8 @@ public class AuthServiceImpl implements AuthService {
     @Override
     @Transactional
     public UsuarioResponse registrarUsuario(RegistroRequest request) {
-        if (usuarioRepository.existsByEmail(request.email())) {
+        String email = normalizarEmail(request.email());
+        if (usuarioRepository.existsByEmailIgnoreCase(email)) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "El email ya esta registrado");
         }
 
@@ -61,7 +66,7 @@ public class AuthServiceImpl implements AuthService {
                 .orElseThrow(() -> new IllegalStateException("El rol USUARIO no existe. Verifica las migraciones de Flyway."));
 
         Usuario usuario = new Usuario();
-        usuario.setEmail(request.email());
+        usuario.setEmail(email);
         usuario.setPasswordHash(passwordEncoder.encode(request.password()));
         usuario.setNombre(request.nombre());
         usuario.setApellido(request.apellido());
@@ -72,6 +77,19 @@ public class AuthServiceImpl implements AuthService {
 
         usuarioRepository.save(usuario);
 
+        Cliente cliente = new Cliente();
+        cliente.setUsuario(usuario);
+        cliente.setNombres(usuario.getNombre());
+        cliente.setApellidos(usuario.getApellido());
+        cliente.setEmail(usuario.getEmail());
+        cliente.setTelefono(usuario.getTelefono());
+        cliente.setActivo(true);
+        clienteRepository.save(cliente);
+
         return usuarioMapper.toResponse(usuario);
+    }
+
+    private String normalizarEmail(String email) {
+        return email == null ? "" : email.trim().toLowerCase(Locale.ROOT);
     }
 }

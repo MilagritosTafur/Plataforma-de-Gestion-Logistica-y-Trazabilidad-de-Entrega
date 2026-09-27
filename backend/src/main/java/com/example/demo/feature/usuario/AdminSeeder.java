@@ -14,6 +14,7 @@ import com.example.demo.domain.repository.UsuarioRepository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import java.util.Locale;
 
 @Component
 @RequiredArgsConstructor
@@ -40,7 +41,7 @@ public class AdminSeeder implements ApplicationRunner {
                 .orElseThrow(() -> new IllegalStateException("El rol ADMINISTRADOR no existe. Verifica las migraciones de Flyway."));
 
         Usuario admin = new Usuario();
-        admin.setEmail(adminEmail);
+        admin.setEmail(adminEmail.trim().toLowerCase(Locale.ROOT));
         admin.setPasswordHash(passwordEncoder.encode(adminPassword));
         admin.setNombre("Administrador");
         admin.setApellido("Sistema");

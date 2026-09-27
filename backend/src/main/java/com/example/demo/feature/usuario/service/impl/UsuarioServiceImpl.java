@@ -1,6 +1,8 @@
 package com.example.demo.feature.usuario.service.impl;
 
 import java.util.Set;
+import java.util.List;
+import java.util.Locale;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -11,8 +13,10 @@ import org.springframework.web.server.ResponseStatusException;
 import com.example.demo.domain.model.RolNombre;
 import com.example.demo.domain.model.Role;
 import com.example.demo.domain.model.Usuario;
+import com.example.demo.domain.model.Repartidor;
 import com.example.demo.domain.repository.RoleRepository;
 import com.example.demo.domain.repository.UsuarioRepository;
+import com.example.demo.domain.repository.RepartidorRepository;
 import com.example.demo.feature.usuario.dto.CrearCuentaRequest;
 import com.example.demo.feature.usuario.dto.UsuarioResponse;
 import com.example.demo.feature.usuario.mapper.UsuarioMapper;
@@ -30,6 +34,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
     private final UsuarioMapper usuarioMapper;
+    private final RepartidorRepository repartidorRepository;
 
     @Override
     @Transactional
@@ -39,18 +44,36 @@ public class UsuarioServiceImpl implements UsuarioService {
                     "El administrador solo puede crear cuentas con rol OPERADOR o REPARTIDOR");
         }
 
-        if (usuarioRepository.existsByEmail(request.email())) {
+        String email = normalizarEmail(request.email());
+        if (usuarioRepository.existsByEmailIgnoreCase(email)) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "El email ya esta registrado");
         }
 
-        Usuario admin = usuarioRepository.findByEmail(emailAdminCreador)
+        String documento = null;
+        String licencia = null;
+        if (request.rol() == RolNombre.REPARTIDOR) {
+            documento = normalizarIdentificador(request.documento());
+            licencia = normalizarIdentificador(request.licenciaConducir());
+            if (documento.isBlank() || licencia.isBlank()) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                        "Para crear un repartidor se requiere documento y licencia de conducir");
+            }
+            if (repartidorRepository.existsByDocumentoIgnoreCase(documento)) {
+                throw new ResponseStatusException(HttpStatus.CONFLICT, "El documento del repartidor ya esta registrado");
+            }
+            if (repartidorRepository.existsByLicenciaConducirIgnoreCase(licencia)) {
+                throw new ResponseStatusException(HttpStatus.CONFLICT, "La licencia de conducir ya esta registrada");
+            }
+        }
+
+        Usuario admin = usuarioRepository.findByEmailIgnoreCase(normalizarEmail(emailAdminCreador))
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Sesion invalida"));
 
         Role rol = roleRepository.findByNombre(request.rol())
                 .orElseThrow(() -> new IllegalStateException("El rol " + request.rol() + " no existe. Verifica las migraciones de Flyway."));
 
         Usuario usuario = new Usuario();
-        usuario.setEmail(request.email());
+        usuario.setEmail(email);
         usuario.setPasswordHash(passwordEncoder.encode(request.password()));
         usuario.setNombre(request.nombre());
         usuario.setApellido(request.apellido());
@@ -61,6 +84,30 @@ public class UsuarioServiceImpl implements UsuarioService {
 
         usuarioRepository.save(usuario);
 
+        if (request.rol() == RolNombre.REPARTIDOR) {
+            Repartidor repartidor = new Repartidor();
+            repartidor.setUsuario(usuario);
+            repartidor.setDocumento(documento);
+            repartidor.setLicenciaConducir(licencia);
+            repartidor.setDisponible(true);
+            repartidorRepository.save(repartidor);
+        }
+
         return usuarioMapper.toResponse(usuario);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<UsuarioResponse> listarEquipo() {
+        return usuarioRepository.findByRolNombreInOrderByNombreAsc(ROLES_ASIGNABLES_POR_ADMIN)
+                .stream().map(usuarioMapper::toResponse).toList();
+    }
+
+    private String normalizarEmail(String email) {
+        return email == null ? "" : email.trim().toLowerCase(Locale.ROOT);
+    }
+
+    private String normalizarIdentificador(String valor) {
+        return valor == null ? "" : valor.trim().toUpperCase(Locale.ROOT);
     }
 }

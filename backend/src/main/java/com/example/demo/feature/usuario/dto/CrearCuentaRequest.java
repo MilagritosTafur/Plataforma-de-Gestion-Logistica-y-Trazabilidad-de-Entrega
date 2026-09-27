@@ -13,6 +13,8 @@ public record CrearCuentaRequest(
         @NotBlank String nombre,
         @NotBlank String apellido,
         String telefono,
+        String documento,
+        String licenciaConducir,
         @NotNull RolNombre rol
 ) {
 }
