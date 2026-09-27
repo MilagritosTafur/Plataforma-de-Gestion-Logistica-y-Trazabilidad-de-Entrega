@@ -1,34 +1,31 @@
 package com.example.demo.feature.rutas.controller;
 
-import com.example.demo.feature.rutas.service.RutaService;
+import com.example.demo.feature.logistica.dto.CrearRutaRequest;
+import com.example.demo.feature.logistica.service.ServicioLogistico;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.*;
 
 @RestController
-@RequestMapping("/rutas")
+@RequestMapping("/api/rutas")
 @RequiredArgsConstructor
 public class RutaController {
 
-    private final RutaService rutaService;
+    private final ServicioLogistico servicioLogistico;
 
     @PostMapping
-    public ResponseEntity<Object> crearRuta(@RequestBody Object request) {
-        Object nuevaRuta = rutaService.crearRuta(request);
-        return ResponseEntity.status(HttpStatus.CREATED).body(nuevaRuta);
+    @PreAuthorize("hasRole('OPERADOR')")
+    public ResponseEntity<Map<String, Object>> crearRuta(@Valid @RequestBody CrearRutaRequest request) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(servicioLogistico.crearRuta(request));
     }
 
     @GetMapping
-    public ResponseEntity<List<Object>> listarRutas() {
-        return ResponseEntity.ok(rutaService.listarRutas());
-    }
-
-    @PostMapping("/{rutaId}/asignar/{repartidorId}")
-    public ResponseEntity<Object> asignarRutaARepartidor(@PathVariable Long rutaId, @PathVariable Long repartidorId) {
-        Object asignacion = rutaService.asignarRepartidor(rutaId, repartidorId);
-        return ResponseEntity.ok(asignacion);
+    @PreAuthorize("hasAnyRole('ADMINISTRADOR','OPERADOR')")
+    public ResponseEntity<List<Map<String, Object>>> listarRutas() {
+        return ResponseEntity.ok(servicioLogistico.listarRutas());
     }
 }
