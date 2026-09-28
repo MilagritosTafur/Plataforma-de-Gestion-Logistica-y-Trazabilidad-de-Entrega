@@ -11,7 +11,7 @@ Thymeleaf se utiliza donde aporta valor real: en el **seguimiento público**. El
 
 No se usa Thymeleaf en los paneles de administrador, operador, repartidor y cliente: esos módulos permanecen como frontend Bootstrap separado y consumen sus controladores REST por JWT. Así se respeta la separación frontend/backend sin duplicar la lógica de permisos.
 
-La portada que está en `front/templates/public/index.html` es la interfaz principal del proyecto. Puede abrirse con Docker/Nginx o con **Live Server**: cuando se sirve desde `127.0.0.1:5500`, el JavaScript detecta ese entorno y consulta de forma segura a `http://127.0.0.1:8081/api`. Así no hay una segunda portada estática ni enlaces de demostración sin función.
+La portada que está en `frontend/templates/public/index.html` es la interfaz principal del proyecto. Puede abrirse con Docker/Nginx o con **Live Server**: cuando se sirve desde `127.0.0.1:5500` o `127.0.0.1:5501`, el JavaScript detecta ese entorno y consulta de forma segura a `http://127.0.0.1:8081/api`. Así no hay una segunda portada estática ni enlaces de demostración sin función.
 
 ## Experiencia de usuario
 
@@ -118,10 +118,10 @@ Si ya tenías los contenedores levantados antes de una modificación del fronten
 ### Usar la misma portada con Live Server
 
 1. Inicia MySQL y el backend en el puerto `8081` (con Docker puedes ejecutar `docker compose up mysql app`).
-2. Abre la carpeta `front` con Live Server y navega a `front/templates/public/index.html` (normalmente `http://127.0.0.1:5500/front/templates/public/index.html`).
+2. Abre la carpeta `frontend` con Live Server y navega a `frontend/templates/public/index.html` (normalmente `http://127.0.0.1:5501/frontend/templates/public/index.html`).
 3. La portada, el seguimiento, registro y acceso consultarán el backend real; no necesitan rutas manuales adicionales. Si Spring Boot está apagado, la interfaz muestra un mensaje que indica cómo resolverlo.
 
-Los orígenes de desarrollo permitidos se definen en `CORS_ALLOWED_ORIGINS`; la configuración incluida admite `localhost` y `127.0.0.1` en los puertos 3000 y 5500. No se habilita cualquier origen.
+Los orígenes de desarrollo permitidos se definen en `CORS_ALLOWED_ORIGINS`; la configuración incluida admite `localhost` y `127.0.0.1` en los puertos 3000, 5500 y 5501. No se habilita cualquier origen.
 
 ## Conexión desde DBeaver
 

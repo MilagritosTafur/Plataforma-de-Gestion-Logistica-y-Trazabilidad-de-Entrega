@@ -35,7 +35,7 @@ public class SecurityConfig {
                         .authenticationEntryPoint(manejadorErroresSeguridad)
                         .accessDeniedHandler(manejadorErroresSeguridad))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**", "/api/tracking/**", "/seguimiento", "/recursos/**").permitAll()
+                        .requestMatchers("/api/auth/**", "/api/tracking/**", "/seguimiento", "/recursos/**", "/error").permitAll()
                         .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
                         .anyRequest().authenticated())
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
