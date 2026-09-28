@@ -14,3 +14,4 @@ public class RepartidorController {
     @GetMapping @PreAuthorize("hasAnyRole('ADMINISTRADOR','OPERADOR')")
     public List<Map<String, Object>> listar() { return servicioLogistico.listarRepartidores(); }
 }
+
