@@ -1,155 +1,109 @@
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ingresar | Core Logistics</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="../../static/css/styleLogin.css?v=20260927-7"
-    />
-  </head>
-  <body class="login-bg d-flex align-items-center py-4">
-    <main class="container login-wrap">
-      <div class="row align-items-center g-4 g-lg-5">
-        <section class="col-lg-6 login-aside">
-          <p class="eyebrow mb-3">Core Logistics / Acceso seguro</p>
-          <h1 class="fw-bold mb-3">Tu operación empieza con una ruta clara.</h1>
-          <p class="lead mb-4">
-            Ingresa con tu correo registrado. El sistema te llevará
-            automáticamente al panel de cliente, reparto, operaciones o
-            administración según tu rol.
-          </p>
-          <div class="login-note d-inline-flex gap-3 p-3 text-start">
-            <i class="bi bi-shield-check fs-4"></i
-            ><span class="small"
-              ><strong class="d-block text-white mb-1"
-                >Acceso controlado por rol</strong
-              >Las cuentas de operador y repartidor las crea un
-              administrador.</span
-            >
-          </div>
-        </section>
-        <section class="col-lg-6">
-          <div class="login-panel card border-0 rounded-4 mx-auto">
-            <div class="card-body p-4 p-md-4">
-              <div class="d-flex align-items-center gap-3 mb-4">
-                <a
-                  class="login-brand-mark text-decoration-none flex-shrink-0"
-                  href="index.html"
-                  aria-label="Volver al inicio"
-                  ><i class="bi bi-box-seam-fill"></i
-                ></a>
-                <div>
-                  <p
-                    class="text-uppercase text-danger small fw-bold mb-1"
-                    style="letter-spacing: 0.11em"
-                  >
-                    Acceso a la plataforma
-                  </p>
-                  <h2 class="h4 fw-bold mb-0">Bienvenido de nuevo</h2>
-                </div>
-              </div>
-              <form id="formLogin" novalidate autocomplete="off">
-                <div
-                  class="alert alert-danger d-none"
-                  id="errorLogin"
-                  role="alert"
-                ></div>
-                <div class="form-floating mb-3">
-                  <input
-                    type="email"
-                    class="form-control"
-                    id="email"
-                    name="correo-acceso"
-                    placeholder="correo@ejemplo.com"
-                    autocomplete="off"
-                    spellcheck="false"
-                    data-lpignore="true"
-                    required
-                  /><label for="email"
-                    ><i class="bi bi-envelope me-1"></i>Correo
-                    electrónico</label
-                  >
-                </div>
-                <div class="form-floating mb-3">
-                  <input
-                    type="password"
-                    class="form-control"
-                    id="password"
-                    name="clave-acceso"
-                    placeholder="Contraseña"
-                    autocomplete="new-password"
-                    data-lpignore="true"
-                    required
-                  /><label for="password"
-                    ><i class="bi bi-key me-1"></i>Contraseña</label
-                  >
-                </div>
-                <button class="btn btn-danger w-100 py-3 fw-bold" type="submit">
-                  Ingresar a mi panel <i class="bi bi-arrow-right ms-1"></i>
-                </button>
-              </form>
-              <div
-                class="d-flex justify-content-between align-items-center border-top mt-4 pt-3 small"
-              >
-                <a class="text-decoration-none text-secondary" href="index.html"
-                  ><i class="bi bi-arrow-left"></i> Inicio</a
-                ><a
-                  class="text-decoration-none text-danger fw-semibold"
-                  href="registro.html"
-                  >Crear cuenta de cliente</a
-                >
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ingresar | Core Logistics</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="../../static/css/styleLogin.css?v=20260927-7" />
+</head>
+
+<body class="login-bg d-flex align-items-center py-4">
+  <main class="container login-wrap">
+    <div class="row align-items-center g-4 g-lg-5">
+      <section class="col-lg-6 login-aside">
+        <p class="eyebrow mb-3">Core Logistics / Acceso seguro</p>
+        <h1 class="fw-bold mb-3">Tu operación empieza con una ruta clara.</h1>
+        <p class="lead mb-4">
+          Ingresa con tu correo registrado. El sistema te llevará
+          automáticamente al panel de cliente, reparto, operaciones o
+          administración según tu rol.
+        </p>
+        <div class="login-note d-inline-flex gap-3 p-3 text-start">
+          <i class="bi bi-shield-check fs-4"></i><span class="small"><strong class="d-block text-white mb-1">Acceso
+              controlado por rol</strong>Las cuentas de operador y repartidor las crea un
+            administrador.</span>
+        </div>
+      </section>
+      <section class="col-lg-6">
+        <div class="login-panel card border-0 rounded-4 mx-auto">
+          <div class="card-body p-4 p-md-4">
+            <div class="d-flex align-items-center gap-3 mb-4">
+              <a class="login-brand-mark text-decoration-none flex-shrink-0" href="../public/index.html"
+                aria-label="Volver al inicio"><i class="bi bi-box-seam-fill"></i></a>
+              <div>
+                <p class="text-uppercase text-danger small fw-bold mb-1" style="letter-spacing: 0.11em">
+                  Acceso a la plataforma
+                </p>
+                <h2 class="h4 fw-bold mb-0">Bienvenido de nuevo</h2>
               </div>
             </div>
+            <form id="formLogin" novalidate autocomplete="off">
+              <div class="alert alert-danger d-none" id="errorLogin" role="alert"></div>
+              <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="email" name="correo-acceso"
+                  placeholder="correo@ejemplo.com" autocomplete="off" spellcheck="false" data-lpignore="true"
+                  required /><label for="email"><i class="bi bi-envelope me-1"></i>Correo
+                  electrónico</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="password" name="clave-acceso" placeholder="Contraseña"
+                  autocomplete="new-password" data-lpignore="true" required /><label for="password"><i
+                    class="bi bi-key me-1"></i>Contraseña</label>
+              </div>
+              <button class="btn btn-danger w-100 py-3 fw-bold" type="submit">
+                Ingresar a mi panel <i class="bi bi-arrow-right ms-1"></i>
+              </button>
+            </form>
+            <div class="d-flex justify-content-between align-items-center border-top mt-4 pt-3 small">
+              <a class="text-decoration-none text-secondary" href="../public/index.html"><i class="bi bi-arrow-left"></i>
+                Inicio</a><a class="text-decoration-none text-danger fw-semibold" href="../public/registro.html">Crear cuenta de
+                cliente</a>
+            </div>
           </div>
-        </section>
-      </div>
-    </main>
-    <script src="../../static/js/auth.js?v=20260927-7"></script>
-    <script>
-      const form = document.getElementById("formLogin");
-      const errorBox = document.getElementById("errorLogin");
-      const limpiarFormulario = () => {
-        form.reset();
-        form.classList.remove("was-validated");
-        document.getElementById("email").value = "";
-        document.getElementById("password").value = "";
-        errorBox.classList.add("d-none");
-      };
-      window.addEventListener("pageshow", limpiarFormulario);
-      window.addEventListener("load", () => {
+        </div>
+      </section>
+    </div>
+  </main>
+  <script src="../../static/js/auth.js?v=20260927-7"></script>
+  <script>
+    const form = document.getElementById("formLogin");
+    const errorBox = document.getElementById("errorLogin");
+    const limpiarFormulario = () => {
+      form.reset();
+      form.classList.remove("was-validated");
+      document.getElementById("email").value = "";
+      document.getElementById("password").value = "";
+      errorBox.classList.add("d-none");
+    };
+    window.addEventListener("pageshow", limpiarFormulario);
+    window.addEventListener("load", () => {
+      limpiarFormulario();
+      window.setTimeout(limpiarFormulario, 250);
+    });
+    form.addEventListener("submit", async (evento) => {
+      evento.preventDefault();
+      errorBox.classList.add("d-none");
+      if (!form.checkValidity()) {
+        form.classList.add("was-validated");
+        return;
+      }
+      try {
+        const datos = await apiLogin(
+          document.getElementById("email").value,
+          document.getElementById("password").value,
+        );
+        saveSession(datos);
         limpiarFormulario();
-        window.setTimeout(limpiarFormulario, 250);
-      });
-      form.addEventListener("submit", async (evento) => {
-        evento.preventDefault();
-        errorBox.classList.add("d-none");
-        if (!form.checkValidity()) {
-          form.classList.add("was-validated");
-          return;
-        }
-        try {
-          const datos = await apiLogin(
-            document.getElementById("email").value,
-            document.getElementById("password").value,
-          );
-          saveSession(datos);
-          limpiarFormulario();
-          redirectPorRol(datos.usuario.rol);
-        } catch (error) {
-          errorBox.textContent = error.message;
-          errorBox.classList.remove("d-none");
-        }
-      });
-    </script>
-  </body>
+        redirectPorRol(datos.usuario.rol);
+      } catch (error) {
+        errorBox.textContent = error.message;
+        errorBox.classList.remove("d-none");
+      }
+    });
+  </script>
+</body>
+
 </html>

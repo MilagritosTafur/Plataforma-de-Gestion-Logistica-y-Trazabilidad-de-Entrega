@@ -1,353 +1,297 @@
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Plataforma de gestión logística y trazabilidad de entregas."
-    />
-    <title>Core Logistics | Gestión y trazabilidad</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
-    />
-    <link rel="stylesheet" href="../../static/css/style.css?v=20260927-7" />
-  </head>
-  <body>
-    <nav
-      class="navbar navbar-expand-lg navbar-dark navbar-core sticky-top shadow-sm"
-    >
-      <div class="container py-2">
-        <a class="navbar-brand fw-bold" href="index.html"
-          ><i class="bi bi-box-seam-fill text-danger me-2"></i>CORE LOGISTICS</a
-        >
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#menuPrincipal"
-          aria-controls="menuPrincipal"
-          aria-expanded="false"
-          aria-label="Abrir menú"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="menuPrincipal">
-          <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
-            <li class="nav-item">
-              <a class="nav-link" href="#solucion">Solución</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#flujo">Flujo de entrega</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#accesos">Accesos</a>
-            </li>
-            <li class="nav-item ms-lg-2">
-              <a class="btn btn-core px-3" href="login.html"
-                ><i class="bi bi-person-lock me-1"></i>Ingresar</a
-              >
-            </li>
-          </ul>
-        </div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Plataforma de gestión logística y trazabilidad de entregas." />
+  <title>Core Logistics | Gestión y trazabilidad</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="../../static/css/style.css?v=20260927-7" />
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-core sticky-top shadow-sm">
+    <div class="container py-2">
+      <a class="navbar-brand fw-bold" href="index.html"><i class="bi bi-box-seam-fill text-danger me-2"></i>CORE
+        LOGISTICS</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal"
+        aria-controls="menuPrincipal" aria-expanded="false" aria-label="Abrir menú">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menuPrincipal">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+          <li class="nav-item">
+            <a class="nav-link" href="#solucion">Solución</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#flujo">Flujo de entrega</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#accesos">Accesos</a>
+          </li>
+          <li class="nav-item ms-lg-2">
+            <a class="btn btn-core px-3" href="../public/login.html"><i class="bi bi-person-lock me-1"></i>Ingresar</a>
+          </li>
+        </ul>
       </div>
-    </nav>
+    </div>
+  </nav>
 
-    <main>
-      <section
-        class="hero-core position-relative d-flex align-items-center py-5"
-      >
-        <div class="container py-4 py-lg-5">
-          <div class="row align-items-center g-5">
-            <div class="col-lg-7">
-              <span class="floating-chip mb-3"
-                ><i class="bi bi-broadcast-pin"></i> Trazabilidad de última
-                milla</span
-              >
-              <p class="hero-eyebrow text-uppercase fw-bold mb-3">
-                Operación conectada
-              </p>
-              <h1 class="display-4 fw-bold lh-sm mb-4">
-                Cada entrega, conectada y bajo control.
-              </h1>
-              <p class="lead hero-copy mb-4">
-                Registra envíos, planifica rutas y ofrece seguimiento confiable
-                desde la recepción hasta la entrega o devolución.
-              </p>
-              <div class="d-flex flex-wrap gap-3 hero-trust">
-                <span
-                  ><i class="bi bi-shield-check me-1"></i>Acceso por roles</span
-                >
-                <span><i class="bi bi-diagram-3 me-1"></i>Flujo validado</span>
-                <span
-                  ><i class="bi bi-clock-history me-1"></i>Eventos
-                  persistentes</span
-                >
-              </div>
-            </div>
-            <div class="col-lg-5">
-              <div class="tracking-search rounded-4 p-4 p-lg-4">
-                <div class="d-flex align-items-center gap-3 mb-3">
-                  <span class="metric-icon"><i class="bi bi-search"></i></span>
-                  <div>
-                    <h2 class="h5 fw-bold text-dark mb-1">Rastrea tu envío</h2>
-                    <p class="small text-secondary mb-0">
-                      Consulta el estado y los eventos autorizados.
-                    </p>
-                  </div>
-                </div>
-                <form id="formTracking" novalidate autocomplete="off">
-                  <label
-                    class="form-label fw-semibold text-dark"
-                    for="codigoSeguimiento"
-                    >Código de seguimiento</label
-                  >
-                  <div class="input-group input-group-lg mb-2">
-                    <span class="input-group-text bg-white"
-                      ><i class="bi bi-upc-scan text-core"></i
-                    ></span>
-                    <input
-                      class="form-control"
-                      id="codigoSeguimiento"
-                      name="codigo-rastreo"
-                      placeholder="Ej.: CL-XXXXXXXXXX"
-                      autocomplete="off"
-                      spellcheck="false"
-                      required
-                    />
-                  </div>
-                  <p class="small text-danger d-none mb-2" id="errorCodigo">
-                    <i class="bi bi-exclamation-circle me-1"></i>Ingresa tu
-                    código de seguimiento.
-                  </p>
-                  <p class="form-text mb-3">
-                    No necesitas una cuenta para la consulta pública.
-                  </p>
-                  <button class="btn btn-core w-100 py-2 fw-bold" type="submit">
-                    Consultar trazabilidad
-                    <i class="bi bi-arrow-right ms-1"></i>
-                  </button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="container py-5" id="solucion">
-        <div class="row align-items-end mb-4">
+  <main>
+    <section class="hero-core position-relative d-flex align-items-center py-5">
+      <div class="container py-4 py-lg-5">
+        <div class="row align-items-center g-5">
           <div class="col-lg-7">
-            <p class="section-kicker mb-2">Una única plataforma</p>
-            <h2 class="section-title mb-0">
-              Deja de operar en sistemas desconectados.
-            </h2>
+            <span class="floating-chip mb-3"><i class="bi bi-broadcast-pin"></i> Trazabilidad de última
+              milla</span>
+            <p class="hero-eyebrow text-uppercase fw-bold mb-3">
+              Operación conectada
+            </p>
+            <h1 class="display-4 fw-bold lh-sm mb-4">
+              Cada entrega, conectada y bajo control.
+            </h1>
+            <p class="lead hero-copy mb-4">
+              Registra envíos, planifica rutas y ofrece seguimiento confiable
+              desde la recepción hasta la entrega o devolución.
+            </p>
+            <div class="d-flex flex-wrap gap-3 hero-trust">
+              <span><i class="bi bi-shield-check me-1"></i>Acceso por roles</span>
+              <span><i class="bi bi-diagram-3 me-1"></i>Flujo validado</span>
+              <span><i class="bi bi-clock-history me-1"></i>Eventos
+                persistentes</span>
+            </div>
           </div>
           <div class="col-lg-5">
-            <p class="section-intro mb-0">
-              La información avanza junto al paquete: cliente, destino, ruta,
-              repartidor, estado y evidencia quedan relacionados.
+            <div class="tracking-search rounded-4 p-4 p-lg-4">
+              <div class="d-flex align-items-center gap-3 mb-3">
+                <span class="metric-icon"><i class="bi bi-search"></i></span>
+                <div>
+                  <h2 class="h5 fw-bold text-dark mb-1">Rastrea tu envío</h2>
+                  <p class="small text-secondary mb-0">
+                    Consulta el estado y los eventos autorizados.
+                  </p>
+                </div>
+              </div>
+              <form id="formTracking" novalidate autocomplete="off">
+                <label class="form-label fw-semibold text-dark" for="codigoSeguimiento">Código de seguimiento</label>
+                <div class="input-group input-group-lg mb-2">
+                  <span class="input-group-text bg-white"><i class="bi bi-upc-scan text-core"></i></span>
+                  <input class="form-control" id="codigoSeguimiento" name="codigo-rastreo"
+                    placeholder="Ej.: CL-XXXXXXXXXX" autocomplete="off" spellcheck="false" required />
+                </div>
+                <p class="small text-danger d-none mb-2" id="errorCodigo">
+                  <i class="bi bi-exclamation-circle me-1"></i>Ingresa tu
+                  código de seguimiento.
+                </p>
+                <p class="form-text mb-3">
+                  No necesitas una cuenta para la consulta pública.
+                </p>
+                <button class="btn btn-core w-100 py-2 fw-bold" type="submit">
+                  Consultar trazabilidad
+                  <i class="bi bi-arrow-right ms-1"></i>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container py-5" id="solucion">
+      <div class="row align-items-end mb-4">
+        <div class="col-lg-7">
+          <p class="section-kicker mb-2">Una única plataforma</p>
+          <h2 class="section-title mb-0">
+            Deja de operar en sistemas desconectados.
+          </h2>
+        </div>
+        <div class="col-lg-5">
+          <p class="section-intro mb-0">
+            La información avanza junto al paquete: cliente, destino, ruta,
+            repartidor, estado y evidencia quedan relacionados.
+          </p>
+        </div>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <article class="feature-panel h-100 p-4 p-lg-5">
+            <span class="feature-icon mb-4"><i class="bi bi-box2-heart"></i></span>
+            <h3 class="h5 fw-bold">Registro con trazabilidad</h3>
+            <p class="text-secondary mb-0">
+              Cada envío genera un código único, paquete asociado y su primer
+              evento: <strong>Registrado</strong>.
+            </p>
+          </article>
+        </div>
+        <div class="col-md-4">
+          <article class="feature-panel h-100 p-4 p-lg-5">
+            <span class="feature-icon mb-4"><i class="bi bi-sign-turn-right"></i></span>
+            <h3 class="h5 fw-bold">Despacho coherente</h3>
+            <p class="text-secondary mb-0">
+              Solo los envíos registrados ingresan a rutas activas con
+              vehículo y repartidor disponibles.
+            </p>
+          </article>
+        </div>
+        <div class="col-md-4">
+          <article class="feature-panel h-100 p-4 p-lg-5">
+            <span class="feature-icon mb-4"><i class="bi bi-shield-check"></i></span>
+            <h3 class="h5 fw-bold">Control por perfil</h3>
+            <p class="text-secondary mb-0">
+              El repartidor asignado actualiza su carga; el cliente solo
+              consulta sus propios datos y eventos visibles.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="flow-section py-5" id="flujo">
+      <div class="container text-center">
+        <p class="section-kicker mb-2">Flujo operativo</p>
+        <h2 class="section-title mb-2">
+          Un ciclo de entrega que no permite saltos
+        </h2>
+        <p class="section-intro mx-auto mb-5">
+          El backend valida cada transición; la interfaz solamente habilita la
+          acción correspondiente al estado actual.
+        </p>
+        <div class="row g-3 flow-line">
+          <div class="col-6 col-lg flow-step">
+            <div class="flow-number">1</div>
+            <h3 class="h6 fw-bold">Registrado</h3>
+            <p class="small text-secondary mb-0">Envío, cliente y destino.</p>
+          </div>
+          <div class="col-6 col-lg flow-step">
+            <div class="flow-number">2</div>
+            <h3 class="h6 fw-bold">Asignado</h3>
+            <p class="small text-secondary mb-0">Vinculado a una ruta.</p>
+          </div>
+          <div class="col-6 col-lg flow-step">
+            <div class="flow-number">3</div>
+            <h3 class="h6 fw-bold">En ruta</h3>
+            <p class="small text-secondary mb-0">
+              El repartidor inicia el recorrido.
+            </p>
+          </div>
+          <div class="col-6 col-lg flow-step">
+            <div class="flow-number">4</div>
+            <h3 class="h6 fw-bold">Entregado</h3>
+            <p class="small text-secondary mb-0">Recepción confirmada.</p>
+          </div>
+          <div class="col-12 col-lg flow-step">
+            <div class="flow-number"><i class="bi bi-exclamation"></i></div>
+            <h3 class="h6 fw-bold">Incidencia / devuelto</h3>
+            <p class="small text-secondary mb-0">
+              Ruta controlada de excepción.
             </p>
           </div>
         </div>
-        <div class="row g-4">
-          <div class="col-md-4">
-            <article class="feature-panel h-100 p-4 p-lg-5">
-              <span class="feature-icon mb-4"
-                ><i class="bi bi-box2-heart"></i
-              ></span>
-              <h3 class="h5 fw-bold">Registro con trazabilidad</h3>
-              <p class="text-secondary mb-0">
-                Cada envío genera un código único, paquete asociado y su primer
-                evento: <strong>Registrado</strong>.
-              </p>
-            </article>
-          </div>
-          <div class="col-md-4">
-            <article class="feature-panel h-100 p-4 p-lg-5">
-              <span class="feature-icon mb-4"
-                ><i class="bi bi-sign-turn-right"></i
-              ></span>
-              <h3 class="h5 fw-bold">Despacho coherente</h3>
-              <p class="text-secondary mb-0">
-                Solo los envíos registrados ingresan a rutas activas con
-                vehículo y repartidor disponibles.
-              </p>
-            </article>
-          </div>
-          <div class="col-md-4">
-            <article class="feature-panel h-100 p-4 p-lg-5">
-              <span class="feature-icon mb-4"
-                ><i class="bi bi-shield-check"></i
-              ></span>
-              <h3 class="h5 fw-bold">Control por perfil</h3>
-              <p class="text-secondary mb-0">
-                El repartidor asignado actualiza su carga; el cliente solo
-                consulta sus propios datos y eventos visibles.
-              </p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="flow-section py-5" id="flujo">
-        <div class="container text-center">
-          <p class="section-kicker mb-2">Flujo operativo</p>
-          <h2 class="section-title mb-2">
-            Un ciclo de entrega que no permite saltos
-          </h2>
-          <p class="section-intro mx-auto mb-5">
-            El backend valida cada transición; la interfaz solamente habilita la
-            acción correspondiente al estado actual.
-          </p>
-          <div class="row g-3 flow-line">
-            <div class="col-6 col-lg flow-step">
-              <div class="flow-number">1</div>
-              <h3 class="h6 fw-bold">Registrado</h3>
-              <p class="small text-secondary mb-0">Envío, cliente y destino.</p>
-            </div>
-            <div class="col-6 col-lg flow-step">
-              <div class="flow-number">2</div>
-              <h3 class="h6 fw-bold">Asignado</h3>
-              <p class="small text-secondary mb-0">Vinculado a una ruta.</p>
-            </div>
-            <div class="col-6 col-lg flow-step">
-              <div class="flow-number">3</div>
-              <h3 class="h6 fw-bold">En ruta</h3>
-              <p class="small text-secondary mb-0">
-                El repartidor inicia el recorrido.
-              </p>
-            </div>
-            <div class="col-6 col-lg flow-step">
-              <div class="flow-number">4</div>
-              <h3 class="h6 fw-bold">Entregado</h3>
-              <p class="small text-secondary mb-0">Recepción confirmada.</p>
-            </div>
-            <div class="col-12 col-lg flow-step">
-              <div class="flow-number"><i class="bi bi-exclamation"></i></div>
-              <h3 class="h6 fw-bold">Incidencia / devuelto</h3>
-              <p class="small text-secondary mb-0">
-                Ruta controlada de excepción.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="container py-5" id="accesos">
-        <div class="row align-items-end mb-4">
-          <div class="col-lg-7">
-            <p class="section-kicker mb-2">Accesos reales</p>
-            <h2 class="section-title mb-0">
-              Cada perfil tiene su espacio y sus permisos.
-            </h2>
-          </div>
-          <div class="col-lg-5 text-lg-end">
-            <a class="btn btn-outline-core" href="login.html"
-              >Iniciar sesión <i class="bi bi-arrow-right ms-1"></i
-            ></a>
-          </div>
-        </div>
-        <div class="row g-4">
-          <div class="col-md-6 col-xl-3">
-            <article class="access-card p-4">
-              <i class="bi bi-shield-lock access-symbol"></i>
-              <h3 class="h5 fw-bold mt-3">Administrador</h3>
-              <p class="small">
-                Crea las cuentas de operadores y repartidores habilitados.
-              </p>
-              <a class="btn btn-sm btn-outline-cyan mt-2" href="login.html"
-                >Ingresar <i class="bi bi-arrow-right ms-1"></i
-              ></a>
-            </article>
-          </div>
-          <div class="col-md-6 col-xl-3">
-            <article class="access-card p-4">
-              <i class="bi bi-clipboard2-check access-symbol"></i>
-              <h3 class="h5 fw-bold mt-3">Operador logístico</h3>
-              <p class="small">
-                Registra clientes, envíos, vehículos, rutas y asignaciones.
-              </p>
-              <a class="btn btn-sm btn-outline-cyan mt-2" href="login.html"
-                >Ingresar <i class="bi bi-arrow-right ms-1"></i
-              ></a>
-            </article>
-          </div>
-          <div class="col-md-6 col-xl-3">
-            <article class="access-card p-4">
-              <i class="bi bi-truck access-symbol"></i>
-              <h3 class="h5 fw-bold mt-3">Repartidor</h3>
-              <p class="small">
-                Gestiona exclusivamente las entregas de su ruta activa.
-              </p>
-              <a class="btn btn-sm btn-outline-cyan mt-2" href="login.html"
-                >Ingresar <i class="bi bi-arrow-right ms-1"></i
-              ></a>
-            </article>
-          </div>
-          <div class="col-md-6 col-xl-3">
-            <article class="access-card p-4">
-              <i class="bi bi-person-check access-symbol"></i>
-              <h3 class="h5 fw-bold mt-3">Cliente</h3>
-              <p class="small">
-                Revisa sus envíos privados y la trazabilidad pública permitida.
-              </p>
-              <a class="btn btn-sm btn-outline-cyan mt-2" href="registro.html"
-                >Crear cuenta <i class="bi bi-arrow-right ms-1"></i
-              ></a>
-            </article>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer-core text-white-50 py-4">
-      <div
-        class="container d-flex flex-column flex-md-row gap-3 align-items-md-center justify-content-between"
-      >
-        <div>
-          <span class="fw-bold text-white"
-            ><i class="bi bi-box-seam-fill text-danger me-2"></i>CORE
-            LOGISTICS</span
-          ><span class="d-block d-md-inline ms-md-3 small"
-            >Gestión logística y trazabilidad de entregas.</span
-          >
-        </div>
-        <span class="small">© 2026 · Plataforma académica</span>
       </div>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-      const formularioTracking = document.getElementById("formTracking");
-      const campoCodigo = document.getElementById("codigoSeguimiento");
-      const errorCodigo = document.getElementById("errorCodigo");
-      window.addEventListener("pageshow", () => formularioTracking.reset());
-      campoCodigo.value = "";
-      campoCodigo.addEventListener("input", () => {
-        campoCodigo.classList.remove("is-invalid");
-        errorCodigo.classList.add("d-none");
+    </section>
+
+    <section class="container py-5" id="accesos">
+      <div class="row align-items-end mb-4">
+        <div class="col-lg-7">
+          <p class="section-kicker mb-2">Accesos reales</p>
+          <h2 class="section-title mb-0">
+            Cada perfil tiene su espacio y sus permisos.
+          </h2>
+        </div>
+        <div class="col-lg-5 text-lg-end">
+          <a class="btn btn-outline-core" href="../public/login.html">Iniciar sesión <i class="bi bi-arrow-right ms-1"></i></a>
+        </div>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-6 col-xl-3">
+          <article class="access-card p-4">
+            <i class="bi bi-shield-lock access-symbol"></i>
+            <h3 class="h5 fw-bold mt-3">Administrador</h3>
+            <p class="small">
+              Crea las cuentas de operadores y repartidores habilitados.
+            </p>
+            <a class="btn btn-sm btn-outline-cyan mt-2" href="../public/login.html">Ingresar <i
+                class="bi bi-arrow-right ms-1"></i></a>
+          </article>
+        </div>
+        <div class="col-md-6 col-xl-3">
+          <article class="access-card p-4">
+            <i class="bi bi-clipboard2-check access-symbol"></i>
+            <h3 class="h5 fw-bold mt-3">Operador logístico</h3>
+            <p class="small">
+              Registra clientes, envíos, vehículos, rutas y asignaciones.
+            </p>
+            <a class="btn btn-sm btn-outline-cyan mt-2" href="../public/login.html">Ingresar <i
+                class="bi bi-arrow-right ms-1"></i></a>
+          </article>
+        </div>
+        <div class="col-md-6 col-xl-3">
+          <article class="access-card p-4">
+            <i class="bi bi-truck access-symbol"></i>
+            <h3 class="h5 fw-bold mt-3">Repartidor</h3>
+            <p class="small">
+              Gestiona exclusivamente las entregas de su ruta activa.
+            </p>
+            <a class="btn btn-sm btn-outline-cyan mt-2" href="../public/login.html">Ingresar <i
+                class="bi bi-arrow-right ms-1"></i></a>
+          </article>
+        </div>
+        <div class="col-md-6 col-xl-3">
+          <article class="access-card p-4">
+            <i class="bi bi-person-check access-symbol"></i>
+            <h3 class="h5 fw-bold mt-3">Cliente</h3>
+            <p class="small">
+              Revisa sus envíos privados y la trazabilidad pública permitida.
+            </p>
+            <a class="btn btn-sm btn-outline-cyan mt-2" href="../public/registro.html">Crear cuenta <i
+                class="bi bi-arrow-right ms-1"></i></a>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer-core text-white-50 py-4">
+    <div class="container d-flex flex-column flex-md-row gap-3 align-items-md-center justify-content-between">
+      <div>
+        <span class="fw-bold text-white"><i class="bi bi-box-seam-fill text-danger me-2"></i>CORE
+          LOGISTICS</span><span class="d-block d-md-inline ms-md-3 small">Gestión logística y trazabilidad de
+          entregas.</span>
+      </div>
+      <span class="small">© 2026 · Plataforma académica</span>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const formularioTracking = document.getElementById("formTracking");
+    const campoCodigo = document.getElementById("codigoSeguimiento");
+    const errorCodigo = document.getElementById("errorCodigo");
+    window.addEventListener("pageshow", () => formularioTracking.reset());
+    campoCodigo.value = "";
+    campoCodigo.addEventListener("input", () => {
+      campoCodigo.classList.remove("is-invalid");
+      errorCodigo.classList.add("d-none");
+    });
+    document
+      .getElementById("formTracking")
+      .addEventListener("submit", (evento) => {
+        evento.preventDefault();
+        const codigo = campoCodigo.value.trim();
+        if (!codigo) {
+          campoCodigo.classList.add("is-invalid");
+          errorCodigo.classList.remove("d-none");
+          campoCodigo.focus();
+          return;
+        }
+        const desdeLiveServer = window.location.port === "5500" || window.location.port === "5501";
+        const baseSeguimiento = desdeLiveServer
+          ? `${window.location.protocol}//${window.location.hostname}:8081`
+          : "";
+        window.location.href = `${baseSeguimiento}/seguimiento?codigo=${encodeURIComponent(codigo)}`;
       });
-      document
-        .getElementById("formTracking")
-        .addEventListener("submit", (evento) => {
-          evento.preventDefault();
-          const codigo = campoCodigo.value.trim();
-          if (!codigo) {
-            campoCodigo.classList.add("is-invalid");
-            errorCodigo.classList.remove("d-none");
-            campoCodigo.focus();
-            return;
-          }
-          const desdeLiveServer = window.location.port === "5500" || window.location.port === "5501";
-          const baseSeguimiento = desdeLiveServer
-            ? `${window.location.protocol}//${window.location.hostname}:8081`
-            : "";
-          window.location.href = `${baseSeguimiento}/seguimiento?codigo=${encodeURIComponent(codigo)}`;
-        });
-    </script>
-  </body>
+  </script>
+</body>
+
 </html>
