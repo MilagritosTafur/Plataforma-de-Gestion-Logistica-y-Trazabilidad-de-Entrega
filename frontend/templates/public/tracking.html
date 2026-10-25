@@ -15,7 +15,7 @@
     <nav class="navbar navbar-dark navbar-core shadow-sm">
         <div class="container py-2"><a class="navbar-brand fw-bold" href="../public/index.html"><i
                     class="bi bi-box-seam-fill text-danger me-2"></i>CORE LOGISTICS</a><a
-                class="btn btn-outline-light btn-sm" href="../public/registro.html"><i
+                class="btn btn-outline-light btn-sm" href="../public/login.html"><i
                     class="bi bi-person-lock me-1"></i>Ingresar</a></div>
     </nav>
     <main class="container py-4 py-lg-5 flex-grow-1">
@@ -68,7 +68,7 @@
                 try {
                     respuesta = await fetch(urlApi(`/tracking/${encodeURIComponent(codigo.trim())}`));
                 } catch (error) {
-                    throw new Error("No se pudo conectar con la plataforma. Verifica que Spring Boot esté activo en el puerto 8080.");
+                    throw new Error("No se pudo conectar con la plataforma. Verifica que Spring Boot esté activo en el puerto 8081.");
                 }
                 const envio = await respuesta.json().catch(() => ({}));
                 if (!respuesta.ok) throw new Error(envio.message || "No encontramos el envío solicitado.");
