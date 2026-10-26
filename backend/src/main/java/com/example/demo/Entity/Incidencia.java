@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+//La representación exacta de las tablas en MySQL
 @Entity
 @Table(name = "incidencias")
 @Getter @Setter @NoArgsConstructor

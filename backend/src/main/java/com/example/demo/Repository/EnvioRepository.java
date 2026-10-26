@@ -9,3 +9,4 @@ public interface EnvioRepository extends JpaRepository<Envio, Long> {
     Optional<Envio> findByCodigoSeguimiento(String codigoSeguimiento);
     List<Envio> findByClienteUsuarioEmailIgnoreCaseOrderByIdDesc(String email);
 }
+

@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+//definimos la ruta base para todas las rutas de este controlador
 @RequestMapping("/api/incidencias")
 @RequiredArgsConstructor
 public class IncidenciaController {

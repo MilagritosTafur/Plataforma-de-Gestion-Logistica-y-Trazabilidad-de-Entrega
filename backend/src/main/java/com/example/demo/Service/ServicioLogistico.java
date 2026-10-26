@@ -226,9 +226,11 @@ public class ServicioLogistico {
     }
 
     public Map<String, Object> reportarIncidencia(Long envioId, CrearIncidenciaRequest request, String emailRepartidor) {
+        //Buscar el envío y verificar que el repartidor tenga permiso
         Envio envio = envioRepository.findById(envioId).orElseThrow(() -> noEncontrado("Envio"));
         Asignacion asignacion = asignacionActivaDelRepartidor(envioId, emailRepartidor);
         verificarTransicion(envio.getEstado(), EstadoEnvio.INCIDENCIA);
+        //Creación de la entidad y guardado de la incidencia en MySQL
         Incidencia incidencia = new Incidencia();
         incidencia.setEnvio(envio);
         incidencia.setRepartidor(asignacion.getRuta().getRepartidor());
@@ -236,10 +238,13 @@ public class ServicioLogistico {
         incidencia.setEvidenciaUrl(request.evidenciaUrl());
         incidencia.setResuelta(false);
         incidenciaRepository.save(incidencia);
+        //Actualizar automáticamente el estado del envío
         envio.setEstado(EstadoEnvio.INCIDENCIA);
+        //Registrar el evento para el historial de seguimiento
         registrarEventoInterno(envio, TipoEventoSeguimiento.INCIDENCIA, request.ubicacion(),
                 "Se registro una incidencia de entrega", true, emailRepartidor);
-        return datos("id", incidencia.getId(), "envioId", envioId, "estadoEnvio", envio.getEstado(), "descripcion", incidencia.getDescripcion());
+        //Retornar la respuesta al controlador
+                return datos("id", incidencia.getId(), "envioId", envioId, "estadoEnvio", envio.getEstado(), "descripcion", incidencia.getDescripcion());
     }
 
     @Transactional(readOnly = true)
