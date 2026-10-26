@@ -1,0 +1,43 @@
+package com.example.demo.Controller;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.demo.DTO.CrearCuentaRequest;
+import com.example.demo.DTO.UsuarioResponse;
+import com.example.demo.Service.UsuarioService;
+
+import java.util.List;
+
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+
+@RestController
+@RequestMapping("/api/usuarios")
+@RequiredArgsConstructor
+public class UsuarioController {
+
+    private final UsuarioService usuarioService;
+
+    @PostMapping
+    @PreAuthorize("hasRole('ADMINISTRADOR')")
+    public ResponseEntity<UsuarioResponse> crearCuenta(@Valid @RequestBody CrearCuentaRequest request,
+                                                         @AuthenticationPrincipal UserDetails principal) {
+        UsuarioResponse usuario = usuarioService.crearCuenta(request, principal.getUsername());
+        return ResponseEntity.status(HttpStatus.CREATED).body(usuario);
+    }
+
+    @GetMapping
+    @PreAuthorize("hasRole('ADMINISTRADOR')")
+    public List<UsuarioResponse> listarEquipo() {
+        return usuarioService.listarEquipo();
+    }
+}

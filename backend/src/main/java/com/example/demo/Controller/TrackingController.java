@@ -1,0 +1,20 @@
+package com.example.demo.Controller;
+
+import com.example.demo.Service.TrackingService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/api/tracking")
+@RequiredArgsConstructor
+public class TrackingController {
+
+    private final TrackingService trackingService;
+
+    @GetMapping("/{codigoSeguimiento}")
+    public ResponseEntity<Object> consultarTrazabilidad(@PathVariable String codigoSeguimiento) {
+        Object trazabilidad = trackingService.obtenerHistorialPorCodigo(codigoSeguimiento);
+        return ResponseEntity.ok(trazabilidad);
+    }
+}
